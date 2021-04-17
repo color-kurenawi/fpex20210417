@@ -5,12 +5,12 @@ from collections import defaultdict
 
 LOG_PATH = "surveillance.csv"
 
-def get_failure_server_list(log_path, timeout_num):
+def get_failure_server_list(log_path, N):
     """
     ログのパスを入力に取り，故障しているサーバアドレスと故障が判明した時間のリストのリストを返す．
     Args:
         log_path (string): ログのパス
-        timeout_num (int):サーバの故障だとみなすpingのタイムアウト回数
+        N (int):サーバの故障だとみなすpingの連続タイムアウト回数
     Returns:
         failure_server_list (list):[
             [server address 1, detected time(YYYYMMDDhhmmss)],
@@ -29,7 +29,7 @@ def get_failure_server_list(log_path, timeout_num):
             t, address, response = line
             if response == "-":
                 failure_server_dict[address] += 1
-                if failure_server_dict[address] >= timeout_num and address not in failure_server_set:
+                if failure_server_dict[address] >= N and address not in failure_server_set:
                     failure_server_list.append([address, t])
                     failure_server_set.add(address)
             else:
@@ -62,13 +62,13 @@ def show_failure_server_list(failure_server_list):
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("timeout_num", type=int, help="サーバの故障だとみなすpingのタイムアウト回数")
+    parser.add_argument("--N", type=int, help="サーバの故障だとみなすpingの連続タイムアウト回数", default=1)
     args = parser.parse_args()
     return args
 
 def main():
     args = get_args()
-    failure_server_list = get_failure_server_list(LOG_PATH, args.timeout_num)
+    failure_server_list = get_failure_server_list(LOG_PATH, args.N)
     show_failure_server_list(failure_server_list)
     
 if __name__ == "__main__":
