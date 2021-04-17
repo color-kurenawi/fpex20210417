@@ -21,3 +21,7 @@ Python3.6
 `surveilance_q1_03.csv`
 
 故障しているサーバが存在しない場合のログ
+
+## テストの結果
+
+3 passed

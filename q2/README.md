@@ -22,3 +22,7 @@ pytest == 6.2.3
 `surveilance_q2_03.csv`
 
 どのサーバもping応答に失敗しない場合のログ
+
+## テストの結果
+
+6 passed
