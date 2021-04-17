@@ -11,14 +11,14 @@ pytest == 6.2.3
 
 ## テストの内容
 
-`surveilance_q1_01.csv`
+`surveilance_q2_01.csv`
 
 1つのサーバが一回だけping応答に失敗する場合のログ
 
-`surveilance_q1_02.csv`
+`surveilance_q2_02.csv`
 
 サーバ`10.20.30.1/16`が最大1回連続でpingに対してタイムアウトし，サーバ`10.20.30.1/16`が最大2回連続でpingに対しタイムアウトする場合のログ
 
-`surveilance_q1_03.csv`
+`surveilance_q2_03.csv`
 
 どのサーバもping応答に失敗しない場合のログ
